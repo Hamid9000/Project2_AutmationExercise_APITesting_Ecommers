@@ -1,4 +1,4 @@
-package com.automationExercise.tests.smoke;
+package com.automationExercise.tests;
 
 import com.automationExercise.assertions.APIAssertions;
 import com.automationExercise.constants.HTTPConstants;

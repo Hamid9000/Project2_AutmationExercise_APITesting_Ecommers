@@ -16,6 +16,7 @@
 
   <!-- Properties -->
   <properties>
+    <suiteXmlFile>src/test/resources/suites/smoke.xml</suiteXmlFile>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <maven.compiler.source>17</maven.compiler.source>
@@ -153,7 +154,7 @@
           <testFailureIgnore>false</testFailureIgnore>
 
           <suiteXmlFiles>
-              <suiteXmlFile>src/test/resources/suites/smoke.xml</suiteXmlFile>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>

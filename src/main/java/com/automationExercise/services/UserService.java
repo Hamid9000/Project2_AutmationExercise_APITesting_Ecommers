@@ -114,4 +114,15 @@ public class UserService {
                 .when()
                 .delete(Endpoints.DELETE_ACCOUNT);
     }
+
+    // Login user
+    public Response loginUser(String email, String password) {
+
+        return RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
+                .formParam("email", email)
+                .formParam("password", password)
+                .when()
+                .post(Endpoints.VERIFY_LOGIN);
+    }
 }

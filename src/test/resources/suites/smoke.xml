@@ -12,10 +12,9 @@
             </run>
         </groups>
 
-        <classes>
-            <class name="com.automationExercise.tests.smoke.ProductTest"/>
-        </classes>
-
+        <packages>
+            <package name="com.automationExercise.tests"/>
+        </packages>
     </test>
 
 </suite>

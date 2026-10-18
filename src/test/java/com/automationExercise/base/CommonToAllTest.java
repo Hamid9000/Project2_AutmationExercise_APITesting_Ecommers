@@ -8,7 +8,7 @@ import com.automationExercise.config.EnvConfig;
 
 public class CommonToAllTest {
 
-    @BeforeSuite
+    @BeforeSuite (alwaysRun = true)
     public void setup() {
 
         RestAssured.baseURI = EnvConfig.getBaseUrl();
