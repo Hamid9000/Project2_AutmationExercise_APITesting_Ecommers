@@ -1,16 +1,15 @@
 package com.automationExercise.tests.crud;
 
 import com.automationExercise.assertions.APIAssertions;
-import com.automationExercise.services.UserService;
+import com.automationExercise.services.LoginService;
 import com.automationExercise.utils.RetryAnalyzer;
-import com.mysql.cj.x.protobuf.Mysqlx;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 
 public class UserCRUDTest {
 
-    private final UserService userService = new UserService();
+    private final LoginService userService = new LoginService();
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void verifyUserCRUDFlow() {
@@ -31,7 +30,7 @@ public class UserCRUDTest {
         // 1. CREATE USER
         // =========================
 
-        Response createResponse = userService.createAccount(
+        Response response = userService.createAccount(
                 name,
                 email,
                 password,
@@ -51,11 +50,11 @@ public class UserCRUDTest {
                 "9876543210"
         );
 
-        APIAssertions.assertStatusCode(createResponse, 200);
+        APIAssertions.assertStatusCode(response, 200);
 
         APIAssertions.assertTrue(
-                createResponse.jsonPath().getInt("responseCode") == 201,
-                "User account was not created successfully"
+                response.jsonPath().getInt("responseCode") == 201,
+                "User account was not created successfully",response
         );
 
 
@@ -70,14 +69,14 @@ public class UserCRUDTest {
 
         APIAssertions.assertTrue(
                 getResponse.jsonPath().getInt("responseCode") == 200,
-                "User details could not be retrieved"
+                "User details could not be retrieved",response
         );
 
         APIAssertions.assertTrue(
                 getResponse.jsonPath()
                         .getString("user.email")
                         .equals(email),
-                "Retrieved email does not match created email"
+                "Retrieved email does not match created email" ,response
         );
 
 
@@ -109,7 +108,7 @@ public class UserCRUDTest {
 
         APIAssertions.assertTrue(
                 updateResponse.jsonPath().getInt("responseCode") == 200,
-                "User account was not updated successfully"
+                "User account was not updated successfully" ,response
         );
 
 
@@ -124,21 +123,21 @@ public class UserCRUDTest {
 
         APIAssertions.assertTrue(
                 updatedResponse.jsonPath().getInt("responseCode") == 200,
-                "Updated user details could not be retrieved"
+                "Updated user details could not be retrieved" ,response
         );
 
         APIAssertions.assertTrue(
                 updatedResponse.jsonPath()
                         .getString("user.first_name")
                         .equals(updatedName),
-                "Updated first name was not saved"
+                "Updated first name was not saved" ,response
         );
 
         APIAssertions.assertTrue(
                 updatedResponse.jsonPath()
                         .getString("user.company")
                         .equals(updatedCompany),
-                "Updated company was not saved"
+                "Updated company was not saved",response
         );
 
 
@@ -155,14 +154,14 @@ public class UserCRUDTest {
 
         APIAssertions.assertTrue(
                 deleteResponse.jsonPath().getInt("responseCode") == 200,
-                "User account was not deleted successfully"
+                "User account was not deleted successfully" ,response
         );
 
         APIAssertions.assertTrue(
                 deleteResponse.jsonPath()
                         .getString("message")
                         .contains("Account deleted"),
-                "Account deletion success message was not found"
+                "Account deletion success message was not found" ,response
         );
     }
 }

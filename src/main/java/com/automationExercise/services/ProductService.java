@@ -20,11 +20,18 @@ public class ProductService {
                 .post(Endpoints.PRODUCTS_LIST);
     }
 
-    public Response searchProduct(String product) {
+    public Response postSearchProduct(String product) {
 
         return RequestBuilder.build()
                 .contentType("application/x-www-form-urlencoded")
                 .formParam("search_product", product)
+                .when()
+                .post(Endpoints.SEARCH_PRODUCT);
+    }
+    public Response postSearchProductWithoutParameter() {
+
+        return RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
                 .when()
                 .post(Endpoints.SEARCH_PRODUCT);
     }

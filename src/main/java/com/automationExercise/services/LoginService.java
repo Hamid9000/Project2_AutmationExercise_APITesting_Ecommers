@@ -3,8 +3,9 @@ package com.automationExercise.services;
 import com.automationExercise.builders.RequestBuilder;
 import com.automationExercise.endpoints.Endpoints;
 import io.restassured.response.Response;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
-public class UserService {
+public class LoginService {
 
     // CREATE USER ACCOUNT
     public Response createAccount(
@@ -124,5 +125,22 @@ public class UserService {
                 .formParam("password", password)
                 .when()
                 .post(Endpoints.VERIFY_LOGIN);
+    }
+
+    public Response postLoginWithoutEmailParameter(String password){
+        return  RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
+                .formParam("password",password)
+                .when()
+                .post(Endpoints.VERIFY_LOGIN);
+    }
+
+    public Response deleteToVerifyLogin(String email, String password){
+        return RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
+                .formParam("email",email)
+                .formParam("password",password)
+                .when()
+                .delete(Endpoints.VERIFY_LOGIN);
     }
 }
