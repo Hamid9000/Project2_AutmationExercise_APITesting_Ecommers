@@ -11,8 +11,7 @@ import com.automationExercise.utils.RetryAnalyzer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import io.qameta.allure.internal.shadowed.jackson.databind.JsonNode;
-import io.restassured.mapper.ObjectMapper;
+
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -219,6 +218,8 @@ public class ProductTest {
         //  System.out.println(response());
         //System.out.println(response.prettyPeek());
         //System.out.println(response.prettyPrint());
+
+        // html me ara tha  response is lia prettying kam nai kr ra tha convert krna pada
         String json = response.asString();
 
         Gson gson = new GsonBuilder()
@@ -257,6 +258,8 @@ public class ProductTest {
                 "Response body message does not match",
                 response
         );
+
+
 
     }
 }

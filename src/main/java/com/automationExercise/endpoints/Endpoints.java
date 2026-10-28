@@ -15,4 +15,5 @@ public class Endpoints {
     public static final String UPDATE_ACCOUNT = "/api/updateAccount";
     public static final String DELETE_ACCOUNT = "/api/deleteAccount";
     public static final String VERIFY_LOGIN ="/api/verifyLogin";
+    public static final String GET_USER_DETAIL_BY_EMAIL="/api/getUserDetailByEmail";
 }

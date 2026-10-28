@@ -35,4 +35,5 @@ public class ProductService {
                 .when()
                 .post(Endpoints.SEARCH_PRODUCT);
     }
+
 }

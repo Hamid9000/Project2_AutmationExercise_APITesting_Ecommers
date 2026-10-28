@@ -8,7 +8,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 public class LoginService {
 
     // CREATE USER ACCOUNT
-    public Response createAccount(
+    public Response postCreateAccount(
             String name,
             String email,
             String password,
@@ -117,7 +117,7 @@ public class LoginService {
     }
 
     // Login user
-    public Response loginUser(String email, String password) {
+    public Response postLoginUser(String email, String password) {
 
         return RequestBuilder.build()
                 .contentType("application/x-www-form-urlencoded")
@@ -127,20 +127,67 @@ public class LoginService {
                 .post(Endpoints.VERIFY_LOGIN);
     }
 
-    public Response postLoginWithoutEmailParameter(String password){
-        return  RequestBuilder.build()
+    public Response postLoginWithoutEmailParameter(String password) {
+        return RequestBuilder.build()
                 .contentType("application/x-www-form-urlencoded")
-                .formParam("password",password)
+                .formParam("password", password)
                 .when()
                 .post(Endpoints.VERIFY_LOGIN);
     }
 
-    public Response deleteToVerifyLogin(String email, String password){
+    public Response deleteToVerifyLogin(String email, String password) {
         return RequestBuilder.build()
                 .contentType("application/x-www-form-urlencoded")
-                .formParam("email",email)
-                .formParam("password",password)
+                .formParam("email", email)
+                .formParam("password", password)
                 .when()
                 .delete(Endpoints.VERIFY_LOGIN);
+    }
+
+    public Response putUpdateUserAccount(  String name,
+                                           String email,
+                                           String password,
+                                           String title,
+                                           String birthDate,
+                                           String birthMonth,
+                                           String birthYear,
+                                           String firstname,
+                                           String lastname,
+                                           String company,
+                                           String address1,
+                                           String address2,
+                                           String country,
+                                           String zipcode,
+                                           String state,
+                                           String city,
+                                           String mobileNumber) {
+        return RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
+                .formParam("name", name)
+                .formParam("email", email)
+                .formParam("password", password)
+                .formParam("title", title)
+                .formParam("birth_date", birthDate)
+                .formParam("birth_month", birthMonth)
+                .formParam("birth_year", birthYear)
+                .formParam("firstname", firstname)
+                .formParam("lastname", lastname)
+                .formParam("company", company)
+                .formParam("address1", address1)
+                .formParam("address2", address2)
+                .formParam("country", country)
+                .formParam("zipcode", zipcode)
+                .formParam("state", state)
+                .formParam("city", city)
+                .formParam("mobile_number", mobileNumber)
+                .when()
+                .put(Endpoints.UPDATE_ACCOUNT);
+    }
+
+    public Response getUserAccountDetailByEmail(String email){
+        return  RequestBuilder.build()
+                .contentType("application/x-www-form-urlencoded")
+                .formParam("email", email)
+                .get(Endpoints.GET_USER_DETAIL_BY_EMAIL);
     }
 }

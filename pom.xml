@@ -111,7 +111,12 @@
       <artifactId>assertj-core</artifactId>
       <version>3.26.3</version>
     </dependency>
-
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>5.5.0</version>
+      <scope>test</scope>
+    </dependency>
     <!-- MySQL JDBC Driver -->
     <dependency>
       <groupId>com.mysql</groupId>

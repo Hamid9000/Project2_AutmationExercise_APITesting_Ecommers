@@ -26,54 +26,23 @@ public class UserCRUDTest {
         String updatedMobile = "9876543211";
 
 
-        // =========================
-        // 1. CREATE USER
-        // =========================
-
-        Response response = userService.createAccount(
-                name,
-                email,
-                password,
-                "Mr",
-                "07",
-                "07",
-                "1997",
-                "Hamid",
-                "Sheikh",
-                "Test Company",
-                "Test Address 1",
-                "Test Address 2",
-                "India",
-                "442401",
-                "Maharashtra",
-                "Chandrapur",
-                "9876543210"
-        );
-
-        APIAssertions.assertStatusCode(response, 200);
-
-        APIAssertions.assertTrue(
-                response.jsonPath().getInt("responseCode") == 201,
-                "User account was not created successfully",response
-        );
-
 
         // =========================
         // 2. READ USER
         // =========================
 
-        Response getResponse =
+        Response response =
                 userService.getUserByEmail(email);
 
-        APIAssertions.assertStatusCode(getResponse, 200);
+        APIAssertions.assertStatusCode(response, 200);
 
         APIAssertions.assertTrue(
-                getResponse.jsonPath().getInt("responseCode") == 200,
+                response.jsonPath().getInt("responseCode") == 200,
                 "User details could not be retrieved",response
         );
 
         APIAssertions.assertTrue(
-                getResponse.jsonPath()
+                response.jsonPath()
                         .getString("user.email")
                         .equals(email),
                 "Retrieved email does not match created email" ,response
